@@ -21,7 +21,7 @@ export default function CartContext({ children }) {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/cart",
         { productId },
-        { headers: { newToken } }
+        { headers: { token:newToken } }
       );
 
       getCart();
