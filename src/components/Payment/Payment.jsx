@@ -208,15 +208,18 @@ export default function Payment() {
         toast.error("Payment failed, try again..");
       });
   }
+  const currentUrl = window.location.origin; // Dynamically get the current domain URL
+  console.log(currentUrl, "currentUrl");
   function handleOnlinePayment(apiObj) {
     setLoading(true);
     axios
       .post(
-        `  https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}`,
+        `  https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${currentUrl}`,
         { apiObj },
         { headers: { token } }
       )
       .then((res) => {
+        localStorage.setItem("Userid", res?.data.data.user);
         console.log(res.data.session.url, "=====");
         window.open(res.data.session.url, "_self");
         setLoading(false); // Set loading to false when request is complete
