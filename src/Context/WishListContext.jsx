@@ -8,17 +8,19 @@ export let WishListContext = createContext(0);
 
 // eslint-disable-next-line react/prop-types
 export default function WishListContextProvider({ children }) {
-  const token = localStorage.getItem("token");
+
   const [loading, setIsLoading] = useState(false);
   const [getLoading, setIsGetLoading] = useState(false);
   const [listDetails, setListDetails] = useState(null);
   const [numOfCart, setNumOfCart] = useState(0);
 
   function getLoggedUserWish() {
+    const newToken = localStorage.getItem("token");
+
     setIsGetLoading(true);
     return axios
       .get(`https://ecommerce.routemisr.com/api/v1/wishlist`, {
-        headers: { token },
+        headers: { token:newToken },
       })
       .then((res) => {
         setListDetails(res.data.data);
@@ -33,13 +35,14 @@ export default function WishListContextProvider({ children }) {
   }
 
   function addToList(productId) {
+    const newToken = localStorage.getItem("token");
     setIsLoading(true);
     return axios
       .post(
         `https://ecommerce.routemisr.com/api/v1/wishlist`,
         { productId: productId },
         {
-          headers: { token },
+          headers: { token:newToken },
         }
       )
       .then((res) => {
@@ -51,10 +54,12 @@ export default function WishListContextProvider({ children }) {
   }
 
   function deleteItem(id) {
+    const newToken = localStorage.getItem("token");
+
     setIsLoading(true);
     axios
       .delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`, {
-        headers: { token },
+        headers: { token:newToken },
       })
       .then((res) => {
         getLoggedUserWish();
