@@ -221,6 +221,7 @@ export default function Payment() {
       .then((res) => {
         window.open(res.data.session.url, "_self");
         localStorage.setItem("Userid", res?.data.data.user);
+        setUserId(res?.data?.data?.user);
         setLoading(false); // Set loading to false when request is complete
         toast.success("Order placed successfully!");
         navigate("/allorders");
