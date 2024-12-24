@@ -219,9 +219,8 @@ export default function Payment() {
         { headers: { token } }
       )
       .then((res) => {
-        localStorage.setItem("Userid", res?.data.data.user);
-        console.log(res.data.session.url, "=====");
         window.open(res.data.session.url, "_self");
+        localStorage.setItem("Userid", res?.data.data.user);
         setLoading(false); // Set loading to false when request is complete
         toast.success("Order placed successfully!");
         navigate("/allorders");
