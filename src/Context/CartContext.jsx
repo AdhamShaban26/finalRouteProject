@@ -12,7 +12,6 @@ export default function CartContext({ children }) {
   const [productsCart, setProductCart] = useState(null);
   const [cartId, setCardId] = useState(null);
   const [loading, setIsLoading] = useState(false);
-  const token = localStorage.getItem("token");
 
   const addToCart = async (productId) => {
     const newToken = localStorage.getItem("token");
@@ -21,7 +20,7 @@ export default function CartContext({ children }) {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/cart",
         { productId },
-        { headers: { token:newToken } }
+        { headers: { token: newToken } }
       );
 
       getCart();
@@ -33,11 +32,13 @@ export default function CartContext({ children }) {
   };
 
   function getCart() {
+    const newToken = localStorage.getItem("token");
+
     setIsLoading(true);
 
     axios
       .get("https://ecommerce.routemisr.com/api/v1/cart", {
-        headers: { token },
+        headers: { token: newToken },
       })
       .then((res) => {
         setCardId(res.data.cartId);
@@ -52,12 +53,14 @@ export default function CartContext({ children }) {
       });
   }
   async function updateCartQuantity(id, count) {
+    const newToken = localStorage.getItem("token");
+
     setIsLoading(true);
     return axios
       .put(
         `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
         { count },
-        { headers: { token } }
+        { headers: { token: newToken } }
       )
       .then((res) => {
         setNumOfCart(res.data.numOfCartItems);
@@ -74,10 +77,12 @@ export default function CartContext({ children }) {
   }
 
   function deleteItem(id) {
+    const newToken = localStorage.getItem("token");
+
     setIsLoading(true);
     axios
       .delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, {
-        headers: { token },
+        headers: { token: newToken },
       })
       .then((res) => {
         setNumOfCart(res.data.numOfCartItems);
@@ -91,11 +96,13 @@ export default function CartContext({ children }) {
       });
   }
   function deleteCart() {
+    const newToken = localStorage.getItem("token");
+
     setIsLoading(true);
 
     axios
       .delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
-        headers: { token },
+        headers: { token: newToken },
       })
       .then(() => {
         getCart();
