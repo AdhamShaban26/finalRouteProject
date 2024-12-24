@@ -226,7 +226,7 @@ export default function Payment() {
         window.open(res.data.session.url, "_self");
         setLoading(false); // Set loading to false when request is complete
         toast.success("Order placed successfully!");
-        navigate("/allorders");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
