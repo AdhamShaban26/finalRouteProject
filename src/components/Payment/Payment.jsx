@@ -208,13 +208,11 @@ export default function Payment() {
         toast.error("Payment failed, try again..");
       });
   }
-  const currentUrl = window.location.origin; // Dynamically get the current domain URL
-
   function handleOnlinePayment(apiObj) {
     setLoading(true);
     axios
       .post(
-        `  https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${currentUrl}`,
+        `  https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}`,
         { apiObj },
         { headers: { token } }
       )
