@@ -76,7 +76,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "allOrders",
+        path: "allorders",
         element: (
           <ProtectedRoute>
             <ALLOrders />
