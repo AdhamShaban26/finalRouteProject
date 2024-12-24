@@ -42,6 +42,8 @@ export default function Product() {
       toast.success(response?.message);
       setIsLoading(false)
     } else {
+    
+      
       toast.error(response?.data?.message);
       setIsLoading(false)
     }

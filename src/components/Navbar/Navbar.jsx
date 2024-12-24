@@ -47,6 +47,7 @@ export default function Navbar() {
                 <li>
                   <NavLink to={"brands"}>Brands</NavLink>
                 </li>
+               
               </ul>
             )}
           </div>
@@ -131,6 +132,7 @@ export default function Navbar() {
                   Brands
                 </NavLink>
               </li>
+              
               {token ? (
                 <li>
                   <span

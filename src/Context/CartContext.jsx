@@ -15,13 +15,15 @@ export default function CartContext({ children }) {
   const token = localStorage.getItem("token");
 
   const addToCart = async (productId) => {
+    const newToken = localStorage.getItem("token");
+
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/cart",
         { productId },
-        { headers: { token } }
+        { headers: { newToken } }
       );
-    
+
       getCart();
       return response?.data;
     } catch (error) {
@@ -38,7 +40,6 @@ export default function CartContext({ children }) {
         headers: { token },
       })
       .then((res) => {
-       
         setCardId(res.data.cartId);
         setNumOfCart(res.data.numOfCartItems);
         setTotalPrice(res.data.data.totalCartPrice);
@@ -59,7 +60,6 @@ export default function CartContext({ children }) {
         { headers: { token } }
       )
       .then((res) => {
-      
         setNumOfCart(res.data.numOfCartItems);
         setTotalPrice(res.data.data.totalCartPrice);
         setProductCart(res.data.data.products);
@@ -80,7 +80,6 @@ export default function CartContext({ children }) {
         headers: { token },
       })
       .then((res) => {
-    
         setNumOfCart(res.data.numOfCartItems);
         setTotalPrice(res.data.data.totalCartPrice);
         setProductCart(res.data.data.products);
