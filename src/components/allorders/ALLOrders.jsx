@@ -2,13 +2,14 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import { Helmet } from "react-helmet";
-// import ServerError from '../ServerError/ServerError';
+import { jwtDecode } from "jwt-decode";
 
 export default function AllOrders() {
   let userId = localStorage.getItem("Userid");
-  function getUserOrders(userId) {
+  function getUserOrders() {
+    const decoded = jwtDecode(localStorage.getItem("token"));
     return axios.get(
-      `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`
+      `https://ecommerce.routemisr.com/api/v1/orders/user/${decoded?.id}`
     );
   }
 

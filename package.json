@@ -1,17 +1,16 @@
 {
   "name": "final-project",
   "private": true,
-
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
-  "lint": "eslint .",
-  "preview": "vite preview"
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.1",
     "@tanstack/react-query": "^5.62.3",
@@ -20,6 +19,7 @@
     "formik": "^2.4.6",
     "generate-react-cli": "^8.4.9",
     "helmet": "^8.0.0",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
