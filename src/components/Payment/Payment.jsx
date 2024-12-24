@@ -218,7 +218,7 @@ export default function Payment() {
         {
           headers: { token },
           params: {
-            url: currentUrl,
+            url: "/",
           },
         }
       )
