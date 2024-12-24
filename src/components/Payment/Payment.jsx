@@ -208,7 +208,7 @@ export default function Payment() {
         toast.error("Payment failed, try again..");
       });
   }
-
+  const currentUrl = window.location.origin;
   function handleOnlinePayment(apiObj) {
     setLoading(true);
     axios
@@ -218,12 +218,11 @@ export default function Payment() {
         {
           headers: { token },
           params: {
-            url: "https://final-route-project-4nuw2am4d-adham-shabans-projects.vercel.app/",
+            url: currentUrl,
           },
         }
       )
       .then((res) => {
-        console.log(res.data.session.url, "=====");
         window.open(res.data.session.url, "_self");
         setLoading(false); // Set loading to false when request is complete
         toast.success("Order placed successfully!");
