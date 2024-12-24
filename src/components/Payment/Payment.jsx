@@ -215,9 +215,15 @@ export default function Payment() {
       .post(
         `  https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}`,
         { apiObj },
-        { headers: { token }, params: { url: "http://localhost:5173" } }
+        {
+          headers: { token },
+          params: {
+            url: "https://final-route-project-4nuw2am4d-adham-shabans-projects.vercel.app/",
+          },
+        }
       )
       .then((res) => {
+        console.log(res.data.session.url, "=====");
         window.open(res.data.session.url, "_self");
         setLoading(false); // Set loading to false when request is complete
         toast.success("Order placed successfully!");
